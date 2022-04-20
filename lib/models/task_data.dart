@@ -9,4 +9,6 @@ class TaskData extends ChangeNotifier{
     Task(taskTitle: 'This is a Task3')
   ];
 
+  int get taskCount => tasks.length;
+
 }

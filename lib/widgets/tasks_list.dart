@@ -7,13 +7,19 @@ import 'package:todo_notes_flutter/models/task.dart';
 class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: (context, index) {
-      return TaskTile(
-        taskTitle: Provider.of<TaskData>(context).tasks[index].taskTitle,
-        setCheckedState: Provider.of<TaskData>(context).tasks[index].isDone,
-        toggleCheckboxState: (newValue) {
-            //widget.tasks[index].isTaskDone();
-        },);
-    }, itemCount: Provider.of<TaskData>(context).tasks.length,);
+    return Consumer<TaskData>(
+      builder: (context, taskData, child) => ListView.builder(
+        itemBuilder: (context, index) {
+          return TaskTile(
+            taskTitle: taskData.tasks[index].taskTitle,
+            setCheckedState: taskData.tasks[index].isDone,
+            toggleCheckboxState: (newValue) {
+              //widget.tasks[index].isTaskDone();
+            },
+          );
+        },
+        itemCount: taskData.taskCount,
+      ),
+    );
   }
 }
