@@ -4,6 +4,10 @@ import 'package:todo_notes_flutter/constants.dart';
 class AddNewTaskScreen extends StatelessWidget {
   String taskTitle = '';
 
+  final Function(String newTaskTitle)  taskCallbacks;
+
+  AddNewTaskScreen({required this.taskCallbacks });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,9 +43,7 @@ class AddNewTaskScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all( Radius.circular(7.0))
               ),
-              onPressed: () {
-                taskTitle
-              },
+              onPressed: () => taskCallbacks(taskTitle),
               fillColor: Colors.lightBlueAccent,
               child: Text('Add', style: kAddButtonTextStyle,),
             )
