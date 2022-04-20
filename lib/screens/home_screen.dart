@@ -1,22 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_notes_flutter/constants.dart';
 import 'package:todo_notes_flutter/screens/add_new_task_screen.dart';
 import 'package:todo_notes_flutter/widgets/tasks_list.dart';
-import 'package:todo_notes_flutter/models/task.dart';
+import '../models/task_data.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  List<Task> tasks = [
-    Task(taskTitle: 'This is a Task'),
-    Task(taskTitle: 'This is a Task2'),
-    Task(taskTitle: 'This is a Task3')
-  ];
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: AddNewTaskScreen(
                   taskCallbacks: (newTaskTitle){
-                    setState(() {
-                      tasks.add(Task(taskTitle: newTaskTitle));
-                    });
-                    Navigator.pop(context);
+                    // setState(() {
+                    //   tasks.add(Task(taskTitle: newTaskTitle));
+                    // });
+                    // Navigator.pop(context);
                   },
                 ),
               ),
@@ -74,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: kTitleTextStyle,
                     ),
                     Text(
-                      '${tasks.length} Tasks',
+                      '${Provider.of<TaskData>(context).tasks.length} Tasks',
                       style: kSubTitleTextStyle,
                     ),
                   ],
@@ -83,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
                 decoration: kDecorationRadiusOnlyTop,
-                child: TasksList(tasks),
+                child: TasksList(),
               ),
             ),
           ],
