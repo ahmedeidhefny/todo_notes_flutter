@@ -20,14 +20,7 @@ class HomeScreen extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: AddNewTaskScreen(
-                  taskCallbacks: (newTaskTitle){
-                    // setState(() {
-                    //   tasks.add(Task(taskTitle: newTaskTitle));
-                    // });
-                    // Navigator.pop(context);
-                  },
-                ),
+                child: AddNewTaskScreen(),
               ),
             ),
           );

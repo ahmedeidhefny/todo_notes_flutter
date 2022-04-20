@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_notes_flutter/constants.dart';
+import 'package:todo_notes_flutter/models/task_data.dart';
 
 class AddNewTaskScreen extends StatelessWidget {
   String taskTitle = '';
-
-  final Function(String newTaskTitle)  taskCallbacks;
-
-  AddNewTaskScreen({required this.taskCallbacks });
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,10 @@ class AddNewTaskScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all( Radius.circular(7.0))
               ),
-              onPressed: () => taskCallbacks(taskTitle),
+              onPressed: (){
+                Provider.of<TaskData>(context, listen: false).addTask(taskTitle);
+                Navigator.pop(context);
+              },
               fillColor: Colors.lightBlueAccent,
               child: Text('Add', style: kAddButtonTextStyle,),
             )
