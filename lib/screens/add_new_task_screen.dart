@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_notes_flutter/constants.dart';
 
 class AddNewTaskScreen extends StatelessWidget {
-  const AddNewTaskScreen({Key? key}) : super(key: key);
+  String taskTitle = '';
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,9 @@ class AddNewTaskScreen extends StatelessWidget {
             style: kAddTaskTextStyle,),
             TextField(
               onTap: () {},
+              onChanged: (newValue){
+                taskTitle = newValue;
+              },
               autofocus: true,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
@@ -36,7 +39,9 @@ class AddNewTaskScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all( Radius.circular(7.0))
               ),
-              onPressed: () {},
+              onPressed: () {
+                taskTitle
+              },
               fillColor: Colors.lightBlueAccent,
               child: Text('Add', style: kAddButtonTextStyle,),
             )
